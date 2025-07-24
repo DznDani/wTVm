@@ -174,7 +174,7 @@ class QueueCommands(MixinMeta, metaclass=CompositeMetaClass):
                 page = len_queue_pages
         return await menu(ctx, queue_page_list, queue_controls, page=(page - 1))
 
-    @command_queue.command(name="clear")
+    @command_queue.hybrid_command(name="clear")
     async def command_queue_clear(self, ctx: commands.Context):
         """Clears the queue."""
         try:
@@ -205,7 +205,7 @@ class QueueCommands(MixinMeta, metaclass=CompositeMetaClass):
             ctx, title=_("Queue Modified"), description=_("The queue has been cleared.")
         )
 
-    @command_queue.command(name="clean")
+    @command_queue.hybrid_command(name="clean")
     async def command_queue_clean(self, ctx: commands.Context):
         """Removes songs from the queue if the requester is not in the voice channel."""
         try:
@@ -251,7 +251,7 @@ class QueueCommands(MixinMeta, metaclass=CompositeMetaClass):
                 ).format(removed_tracks=removed_tracks),
             )
 
-    @command_queue.command(name="cleanself")
+    @command_queue.hybrid_command(name="cleanself")
     async def command_queue_cleanself(self, ctx: commands.Context):
         """Removes all tracks you requested from the queue."""
 
@@ -305,7 +305,7 @@ class QueueCommands(MixinMeta, metaclass=CompositeMetaClass):
             search_page_list.append(embed)
         await menu(ctx, search_page_list)
 
-    @command_queue.command(name="shuffle")
+    @command_queue.hybrid_command(name="shuffle")
     @commands.cooldown(1, 30, commands.BucketType.guild)
     async def command_queue_shuffle(self, ctx: commands.Context):
         """Shuffles the queue."""
